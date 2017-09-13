@@ -123,7 +123,7 @@ void radioReceive() {
                 Serial.print(F("%RH: "));
                 Serial.print(atmHum);
                 Serial.println(F(" %"));
-                Serial.print(F("Trtd = "));
+                Serial.print(F("Trtd: "));
                 Serial.print(iceTmp);
                 Serial.println(F(" deg C"));
                 Serial.println();
