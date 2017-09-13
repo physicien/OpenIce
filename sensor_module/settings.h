@@ -32,4 +32,4 @@
 
 // Sleep time between measurements
 #define NB_TIME             1
-#define SLEEP_TIME          5000       //msec range 0...65535
+#define SLEEP_TIME          60000       //msec range 0...65535
