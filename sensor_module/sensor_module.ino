@@ -277,7 +277,12 @@ void rtdSetup() {
 }
 
 double rtdRead() {
+    float R0;
+    float A = 3.9083E-3;
+    float B = -5.775E-7;
+    double res;
     double tmp;
+
     analogWrite(MOSFET_PIN, MOSFET_V);
     SPI.beginTransaction(settingsA);
     digitalWrite(MAX_CS_PIN, LOW);
@@ -297,21 +302,24 @@ double rtdRead() {
       if(1 == RTD_CH0.RTD_type)         // Handle values for PT100
       {
         // Calculate RTD resistance
-        tmp = (double)RTD_CH0.rtd_res_raw * 430 / 32768;
+        res = (double)RTD_CH0.rtd_res_raw * 430 / 32768;
         Serial.print(F("Rrtd = "));     // Print RTD resistance heading
         Serial.print(tmp);              // Print RTD resistance
+        R0 = 100;
       }
       else if(2 == RTD_CH0.RTD_type)    // Handle values for PT1000
       {
         // Calculate RTD resistance
-        tmp = (double)RTD_CH0.rtd_res_raw * 4700 / 32768;
+        res = (double)RTD_CH0.rtd_res_raw * 4700 / 32768;
         Serial.print(F("Rrtd = "));     // Print RTD resistance heading
         Serial.print(tmp);              // Print RTD resistance
+        R0 = 1000;
       }
       Serial.println(F(" ohm"));
       // Calculate RTD temperature (simple calc, +/- 2 deg C from -100C to 100C)
       // more accurate curve can be used outside that range
-      tmp = ((double)RTD_CH0.rtd_res_raw / 32) - 256;
+//      tmp = ((double)RTD_CH0.rtd_res_raw / 32) - 256;
+      tmp = (-R0 * A +sqrt(R0 * R0 *A * A - 4 * R0 * B * (R0 - res))) / (2 * R0 * B);
       Serial.print(F("Trtd = "));       // Print RTD temperature heading
       Serial.print(tmp);                // Print RTD resistance
       Serial.println(F(" deg C"));      // Print RTD temperature heading

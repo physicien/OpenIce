@@ -12,7 +12,7 @@
 #define MOSFET_V            102     // 5V -> 102 and 3.3V -> 155
 
 //RTD type
-#define RTD_TYPE            1       // 1 for PT100, 2 for PT1000
+#define RTD_TYPE            2       // 1 for PT100, 2 for PT1000
 
 // Define serial baudrate
 #define SERIAL_BAUD         115200
@@ -32,4 +32,4 @@
 
 // Sleep time between measurements
 #define NB_TIME             1
-#define SLEEP_TIME          60000       //msec range 0...65535
+#define SLEEP_TIME          5000       //msec range 0...65535
