@@ -1,4 +1,4 @@
-![Open Ice Logo](https://imgur.com/ghDnTz3)
+![](logo.png)
 
 
 
